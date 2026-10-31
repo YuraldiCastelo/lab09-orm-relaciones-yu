@@ -25,9 +25,8 @@ class CategoriaModel(Base):
     nombre: Mapped[str] = mapped_column(String(50), nullable=False, unique=True)
 
     productos: Mapped[list["ProductoModel"]] = relationship(
-        "ProductoModel", back_populates="categoria"
+        "ProductoModel", back_populates="categoria", cascade="all, delete-orphan"
     )
-
 
 class ProductoModel(Base):
     __tablename__ = "productos"
